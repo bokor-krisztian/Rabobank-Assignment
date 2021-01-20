@@ -6,8 +6,8 @@
 
 package com.softvision.krisztianbokor.presentation.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.softvision.krisztianbokor.R
 import com.softvision.krisztianbokor.presentation.ui.person.PersonFragment
 
@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, PersonFragment())
-                    .commitNow()
+                .replace(R.id.container, PersonFragment())
+                .commitNow()
         }
     }
 }

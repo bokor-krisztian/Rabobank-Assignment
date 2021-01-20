@@ -7,10 +7,10 @@
 package com.softvision.krisztianbokor.domain.model
 
 data class PersonModel(
-    val firstName : String,
-    val lastName : String,
-    val issueCount : Int,
-    val dateOfBirth : String
+    val firstName: String,
+    val lastName: String,
+    val issueCount: Int,
+    val dateOfBirth: String
 ) {
     companion object {
         const val FIRST_NAME = "First name"

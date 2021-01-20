@@ -6,16 +6,18 @@
 
 package com.softvision.krisztianbokor.domain.usecase
 
+import android.content.Context
 import com.softvision.krisztianbokor.app.personModule
+import com.softvision.krisztianbokor.domain.exception.CsvParsingException
 import com.softvision.krisztianbokor.domain.model.PersonModel
 import com.softvision.krisztianbokor.util.RaboInstrumentationTestRunner
+import com.softvision.krisztianbokor.util.personTestModule
+import io.mockk.every
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
-import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
-import org.junit.Before
 import org.junit.Test
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
@@ -24,26 +26,34 @@ import org.koin.java.KoinJavaComponent.inject
 @ExperimentalCoroutinesApi
 class GetPersonsUseCaseInstrumentedTest : RaboInstrumentationTestRunner() {
 
-    val SUT: GetPersonsUseCase by inject(GetPersonsUseCase::class.java)
+    private val SUT: GetPersonsUseCase by inject(GetPersonsUseCase::class.java)
 
-    @Before
-    fun setUp() {
+    private val mockContext: Context by inject(Context::class.java)
+
+    @Test
+    fun testUseCase_listOfPersons_shouldReturnOK() {
         loadKoinModules(personModule)
-    }
-
-    @After
-    fun tearDown() {
+        runBlocking {
+            SUT.invoke().collect { result ->
+                assertTrue(result is GetPersonsResult.HasData)
+                assertEquals((result as GetPersonsResult.HasData).data.size, 3)
+                assertEquals(result.data, getListOfPersons())
+            }
+        }
         unloadKoinModules(personModule)
     }
 
     @Test
-    fun testUseCase_listOfPersons_shouldReturnOK() {
+    fun testUseCase_exception_shouldReturnError() {
+        loadKoinModules(personTestModule)
         runBlocking {
+            every { mockContext.resources.openRawResource(any()) } throws CsvParsingException()
+
             SUT.invoke().collect { result ->
-                assertTrue(result is GetPersonsResult.HasData)
-                assertEquals((result as GetPersonsResult.HasData).data, getListOfPersons())
+                assertTrue(result is GetPersonsResult.Error)
             }
         }
+        unloadKoinModules(personTestModule)
     }
 
     private fun getListOfPersons(): List<PersonModel> =

@@ -6,7 +6,6 @@
 
 package com.softvision.krisztianbokor.domain.usecase
 
-import android.util.Log
 import com.softvision.krisztianbokor.domain.model.PersonModel
 import com.softvision.krisztianbokor.domain.repository.PersonRepository
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +19,7 @@ class GetPersonsUseCase(private val repository: PersonRepository) {
         return flow {
             repository.getPersons()
                 .flowOn(Dispatchers.Default)
-                .catch { emit(GetPersonsResult.Error(it.message!!)) }
+                .catch { it.message?.let { msg -> emit(GetPersonsResult.Error(msg)) } }
                 .collect { emit(GetPersonsResult.HasData(it)) }
         }
     }
