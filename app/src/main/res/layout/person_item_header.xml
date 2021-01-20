@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textStyle="bold"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textColor="@color/colorWhite"
         tools:text="First name" />
 
@@ -34,7 +34,7 @@
         app:layout_constraintStart_toEndOf="@id/guideline1"
         app:layout_constraintTop_toTopOf="parent"
         android:textStyle="bold"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textColor="@color/colorWhite"
         tools:text="Last name" />
 
@@ -47,7 +47,7 @@
         app:layout_constraintStart_toEndOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent"
         android:textStyle="bold"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textColor="@color/colorWhite"
         tools:text="Issue Count" />
 
@@ -60,7 +60,7 @@
         app:layout_constraintStart_toEndOf="@id/guideline3"
         app:layout_constraintTop_toTopOf="parent"
         android:textStyle="bold"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textColor="@color/colorWhite"
         tools:text="Date of birth" />
 
