@@ -1,6 +1,6 @@
 # Rabobank-Assignment
 
-![alt text](https://raw.githubusercontent.com/krisztian-bokor/Disclosure/master/docs/architecture.png?token=APOVEBGS6UUHZ32JB3TUBFTABA5VW)
+![](docs/architecture.png)
 
 ## Modules (Layers)
 ### App
