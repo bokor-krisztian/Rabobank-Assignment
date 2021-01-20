@@ -1,0 +1,8 @@
+/*
+ * Copyright (c) 2021. Cognizant Softvision
+ * Krisztian Bokor
+ *
+ */
+
+include ':app'
+rootProject.name = "Rabobank"

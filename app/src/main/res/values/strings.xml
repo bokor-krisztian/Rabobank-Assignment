@@ -1,0 +1,10 @@
+<!--
+  ~ Copyright (c) 2021. Cognizant Softvision
+  ~ Krisztian Bokor
+  ~
+  -->
+
+<resources>
+    <string name="app_name">Rabobank</string>
+    <string name="something_went_wrong">Ooops...something went wrong</string>
+</resources>
